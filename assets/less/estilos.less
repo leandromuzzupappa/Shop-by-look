@@ -1,0 +1,300 @@
+.transition(@transition) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -ms-transition: @transition;
+    -o-transition: @transition;
+    transition: @transition;
+}
+
+.transform(@string) {
+    -webkit-transform: @string;
+    -moz-transform: @string;
+    -ms-transform: @string;
+    -o-transform: @string;
+    transform: @string;
+}
+
+.transform-origin(@x: center, @y: center) {
+    -webkit-transform-origin: @x @y;
+    -moz-transform-origin: @x @y;
+    -ms-transform-origin: @x @y;
+    -o-transform-origin: @x @y;
+    transform-origin: @x @y;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+    background: #e0e0e0;
+}
+
+.shop_by_look_customizer {
+    position: relative;
+
+    .sbl {
+        &__container {
+            width: calc(100% - 450px);
+            height: 100%;
+        }
+
+        &__preview {
+            max-width: 350px;
+            text-align: center;
+            position: relative;
+
+            img {
+                width: 100%;
+                height: 100%;
+                display: block;
+                border: 0;
+                object-fit: cover;
+            }
+
+            &--area {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+
+                .product__btn {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    .transform-origin();
+                    .transform(translate(0%, -50%));
+                    width: 25px;
+                    height: 25px;
+                    border: 0;
+                    border-radius: 100px;
+                    background: #ffffff;
+                    text-align: left;
+                    .transition(all 0.2s);
+                    overflow: hidden;
+                    padding: 0 !important;
+
+                    @media only screen and (max-width: 500px) {
+                        width: 16px;
+                        height: 16px;
+                    }
+
+                    &.open {
+                        width: 200px;
+                        height: 55px;
+                        border-radius: 6px;
+                        cursor: pointer;
+
+                        @media only screen and (max-width: 1400px) {
+                            width: 180px;
+                        }
+
+                        @media only screen and (max-width: 1200px) {
+                            width: 140px;
+                            //height: 65px;
+                        }
+
+                        @media only screen and (max-width: 1000px) {
+                            width: 165px;
+                        }
+
+                        p {
+                            .transform(translate(0%, -50%));
+                        }
+                    }
+
+                    p {
+                        position: absolute;
+                        top: 50%;
+                        left: 13px;
+                        width: 200px;
+                        .transition(all 0.2s);
+                        .transform(translate(-120%, -50%));
+
+                        font-size: 13px;
+                        color: #000000;
+                        margin: 0;
+                        pointer-events: none;
+
+                        @media only screen and (max-width: 1400px) {
+                            width: 170px;
+                        }
+
+                        @media only screen and (max-width: 1200px) {
+                            width: 130px;
+                        }
+
+                        @media only screen and (max-width: 1000px) {
+                            width: 160px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__content {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 450px;
+            height: 100%;
+            background: #ffffff;
+            padding: 1rem;
+            overflow: auto;
+
+            &--info {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &--actions {
+                    display: flex;
+                    flex-direction: column;
+
+                    button {
+                        margin: 0.2rem 0;
+                        padding: 0.5rem 2rem;
+                        text-align: center;
+                        background: #000000;
+                        color: #ffffff;
+                        border: 0;
+
+                        &:hover {
+                            background: #333333;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            &--create {
+                opacity: 0;
+                pointer-events: none;
+                .transform(translateX(150%));
+                .transition(all 0.4s ease-in-out);
+
+                &--open {
+                    opacity: 1;
+                    pointer-events: all;
+                    .transform(translateX(0%));
+                }
+            }
+        }
+
+        &__products {
+            &--empty {
+                margin: 2rem;
+                text-align: center;
+            }
+        }
+
+        &__listItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #cccccc;
+
+            &:nth-child(1) {
+                margin-top: 2rem;
+            }
+
+            h4 {
+                text-transform: uppercase;
+            }
+
+            .actions {
+                display: flex;
+
+                button {
+                    width: 40px;
+                    height: 40px;
+                    border: 0;
+                    background: #000000;
+                    color: #ffffff;
+                    margin: 0 0.2rem;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: #333333;
+                    }
+
+                    svg {
+                        .transform(scale(0.8));
+                    }
+
+                    path {
+                        stroke: #ffffff;
+                    }
+
+                    &.actions--delete {
+                        background: #e74c3c;
+
+                        &:hover {
+                            background: #c0392b;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__product {
+            &--group {
+                margin: 2rem 0;
+                position: relative;
+            }
+
+            label {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                .transform(translateY(-50%));
+                .transition(all 0.2s ease-in-out);
+                pointer-events: none;
+                font-size: 16px;
+            }
+
+            input {
+                width: 100%;
+                padding: 0.5rem;
+                outline: none;
+                border: none;
+                border-bottom: 1px solid #ccc;
+                font-size: 16px;
+
+                &:not(:focus):valid,
+                &:focus {
+                    border-bottom: 2px solid rgb(13, 177, 13);
+
+                    & ~ label {
+                        .transform(translateY(-200%));
+                        color: #979797;
+                    }
+                }
+            }
+
+            &--save {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 1rem 2rem;
+                background: #000000;
+                color: #ffffff;
+                text-transform: uppercase;
+                font-size: 16px;
+                border: 0;
+
+                &:hover {
+                    background: #333333;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

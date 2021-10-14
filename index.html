@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Test</title>
+
+        <link rel="stylesheet" href="assets/css/estilos.css" />
+    </head>
+    <body>
+        <main
+            class="shop_by_look_customizer"
+            onload="initShopByLoopCustomizer()"
+        >
+            <h1>Personalizar shop by look</h1>
+
+            <section class="sbl__container">
+                <div class="sbl__preview">
+                    <img
+                        src="https://statics.glamit.com.ar/media/catalog/product/1/0/10974_carocuore_476702_02_1.jpg"
+                        alt=""
+                        width="300"
+                    />
+
+                    <div class="sbl__preview--area"></div>
+                </div>
+
+                <div class="sbl__content sbl__content--main">
+                    <div class="sbl__content--info">
+                        <h2>Productos en la imagen</h2>
+                        <div class="sbl__content--info--actions">
+                            <button onclick="createProduct();">Crear</button>
+                        </div>
+                    </div>
+
+                    <div class="sbl__products sbl__products--main">
+                        <div class="sbl__listItem">
+                            <h4>Colaless Rosa</h4>
+                            <div class="actions">
+                                <button
+                                    class="actions--edit"
+                                    title="Editar producto"
+                                >
+                                    <svg
+                                        width="10"
+                                        height="18"
+                                        viewBox="0 0 10 18"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M1 1L9 9L1 17"
+                                            stroke="black"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </button>
+                                <button
+                                    class="actions--delete"
+                                    title="Borrar producto"
+                                >
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 18 18"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M1 1L9 9L1 17"
+                                            stroke="black"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        <path
+                                            d="M17 1L9 9L17 17"
+                                            stroke="black"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sbl__content sbl__content--create">
+                    <div class="sbl__content--info">
+                        <h2>Nuevo producto</h2>
+                        <div class="sbl__content--info--actions">
+                            <button onclick="deleteProduct(this);">
+                                Borrar
+                            </button>
+                            <button onclick="closeCreateProduct();">
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+
+                    <form action="#save" id="sbl__content--form">
+                        <div class="sbl__products">
+                            <div class="sbl__product">
+                                <input
+                                    type="text"
+                                    id="sbl__product--id"
+                                    required
+                                    hidden
+                                />
+
+                                <div class="sbl__product--group">
+                                    <input
+                                        type="text"
+                                        id="sbl__product--name"
+                                        required
+                                    />
+                                    <label for="sbl__product--name"
+                                        >Nombre producto</label
+                                    >
+                                </div>
+
+                                <div class="sbl__product--group">
+                                    <input
+                                        type="text"
+                                        id="sbl__product--price"
+                                        required
+                                    />
+                                    <label for="sbl__product--price"
+                                        >Precio</label
+                                    >
+                                </div>
+
+                                <div class="sbl__product--group">
+                                    <input
+                                        type="text"
+                                        id="sbl__product--link"
+                                        required
+                                    />
+                                    <label for="sbl__product--link">Link</label>
+                                </div>
+
+                                <h4>Personalizacion puntito</h4>
+
+                                <div class="sbl__product--group">
+                                    <input
+                                        type="text"
+                                        id="sbl__product--top"
+                                        value="50%"
+                                        data-style="top"
+                                        required
+                                    />
+                                    <label for=""
+                                        >Top (en <strong>%</strong>)</label
+                                    >
+                                </div>
+
+                                <div class="sbl__product--group">
+                                    <input
+                                        type="text"
+                                        id="sbl__product--left"
+                                        value="50%"
+                                        data-style="left"
+                                        required
+                                    />
+                                    <label for=""
+                                        >Left (en <strong>%</strong>)</label
+                                    >
+                                </div>
+
+                                <div class="sbl__product--group">
+                                    <input
+                                        type="text"
+                                        id="sbl__product--background"
+                                        value="#ffffff"
+                                        data-style="background"
+                                        required
+                                    />
+                                    <label for="">
+                                        Color de fondo (en hexadecimal,
+                                        <strong>ej: #ffffff</strong>)
+                                    </label>
+                                </div>
+
+                                <div class="sbl__product--group">
+                                    <input
+                                        type="text"
+                                        id="sbl__product--textcolor"
+                                        value="#000000"
+                                        data-style="color"
+                                        required
+                                    />
+                                    <label for="">
+                                        Color de texto (en hexadecimal,
+                                        <strong>ej: #ffffff</strong>)
+                                    </label>
+                                </div>
+
+                                <div class="sbl__product--group">
+                                    <button
+                                        class="sbl__product--save"
+                                        onclick="saveProduct(event)"
+                                    >
+                                        Guardar producto
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <script src="assets/scripts/app.js"></script>
+    </body>
+</html>
