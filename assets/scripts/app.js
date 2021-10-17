@@ -16,6 +16,10 @@ if (shopByLookCustomizer) {
         const productList = sblContentMain.querySelector(".sbl__products");
         productList.innerHTML =
             "<p class='sbl__products--empty'>No hay productos seteados</p>";
+    } else {
+        products.forEach((product) => {
+            createProductList(product.id, product.name);
+        });
     }
 }
 
@@ -88,6 +92,8 @@ function saveProduct(event) {
 
     if (!productsStored) {
         localStorage.setItem(localStorageKey, JSON.stringify([productData]));
+
+        reRenderProductList();
         closeCreateProduct();
         return;
     }
@@ -107,13 +113,26 @@ function saveProduct(event) {
         });
 
         localStorage.setItem(localStorageKey, JSON.stringify(productsUpdated));
+
+        reRenderProductList();
         closeCreateProduct();
         return;
     }
 
     productsStored.push(productData);
     localStorage.setItem(localStorageKey, JSON.stringify(productsStored));
+
+    reRenderProductList();
     closeCreateProduct();
+
+    function reRenderProductList() {
+        const listContainer = document.querySelector(".sbl__products--main");
+        listContainer.innerHTML = "";
+
+        productsStored.forEach((product) => {
+            createProductList(product.id, product.name);
+        });
+    }
 }
 
 function createProduct() {
@@ -221,4 +240,27 @@ function handleButtonOpen(button) {
         );
         return;
     }
+}
+
+function createProductList(PID, name) {
+    const listContainer = document.querySelector(".sbl__products--main");
+
+    listContainer.innerHTML += `
+        <div class="sbl__listItem">
+            <h4>${name}</h4>
+            <div class="actions">
+                <button data-productId="${PID}" class="actions--edit" title="Editar producto">
+                    <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L9 9L1 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button data-productId="${PID}" class="actions--delete" title="Borrar producto">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L9 9L1 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17 1L9 9L17 17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    `;
 }
